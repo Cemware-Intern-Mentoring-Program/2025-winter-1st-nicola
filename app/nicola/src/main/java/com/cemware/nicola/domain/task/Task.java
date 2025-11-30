@@ -1,7 +1,6 @@
 package com.cemware.nicola.domain.task;
 
 import com.cemware.nicola.domain.group.Group;
-import com.cemware.nicola.domain.user.User;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
@@ -16,7 +15,7 @@ import java.util.Date;
 public class Task {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "task_id", unique = true, nullable = false)
     private Long taskId;
 
@@ -25,21 +24,23 @@ public class Task {
 
     private Date deadline;
 
-    @Column(nullable = false)
-    private boolean is_completed;
+    @Column(name = "is_completed", nullable = false)
+    private boolean isCompleted;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "group_id")
     private Group group;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
-
     @Builder
-    public Task(String taskName, Date deadline, boolean is_completed){
+    public Task(String taskName, Date deadline, boolean isCompleted){
         this.taskName = taskName;
         this.deadline = deadline;
-        this.is_completed = is_completed;
+        this.isCompleted = isCompleted;
+    }
+
+    public void updateTaskInformation(String taskName, Date deadline, boolean isCompleted){
+        this.taskName = taskName;
+        this.deadline = deadline;
+        this.isCompleted = isCompleted;
     }
 }

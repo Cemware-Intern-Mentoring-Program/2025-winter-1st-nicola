@@ -6,6 +6,9 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Getter
 @Table(name = "user")
@@ -13,7 +16,7 @@ import lombok.NoArgsConstructor;
 public class User {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id", unique = true, nullable = false)
     private Long userId;
     @Column(length = 20, nullable = false)
@@ -21,10 +24,8 @@ public class User {
     @Column(length = 30)
     private String email;
 
-    @ManyToOne
-    @JoinColumn(name = "group_id")
-    private Group group;
-
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private final List<Group> groups = new ArrayList<>();
 
     @Builder
     public User(String userName, String email){
@@ -32,4 +33,8 @@ public class User {
         this.email = email;
     }
 
+    public void updateUserInformation(String userName, String email) {
+        this.userName = userName;
+        this.email = email;
+    }
 }

@@ -1,0 +1,41 @@
+package com.cemware.nicola.service;
+
+import com.cemware.nicola.domain.group.GroupRepository;
+import com.cemware.nicola.domain.task.Task;
+import com.cemware.nicola.domain.task.TaskRepository;
+import com.cemware.nicola.dto.GroupCreateDto;
+import com.cemware.nicola.dto.TaskCreateDto;
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+
+import java.util.Date;
+
+@Service
+@RequiredArgsConstructor
+public class TaskService {
+    private final TaskRepository taskRepository;
+
+    public Task createTask(Long groupId, TaskCreateDto data) {
+        Task task = Task.builder()
+                .taskName(data.getTaskName())
+                .deadline(data.getDeadline())
+                .isCompleted(data.isCompleted())
+                .build();
+        return taskRepository.save(task);
+    }
+
+    public Task getTask(Long taskId) {
+        return taskRepository.findById(taskId).orElseThrow(()->new IllegalArgumentException("존재하지 않는 할 일 입니다."));
+    }
+
+    public Task updateTask(Long taskId, TaskCreateDto data) {
+        Task task = taskRepository.findById(taskId).orElseThrow(()->new IllegalArgumentException("존재하지 않는 할 일 입니다."));
+        task.updateTaskInformation(data.getTaskName(), data.getDeadline(), data.isCompleted());
+        return task;
+    }
+
+    public void deleteTask(Long taskId) {
+        taskRepository.deleteById(taskId);
+    }
+}
