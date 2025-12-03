@@ -45,8 +45,8 @@ public class UserController {
     }
 
 
-//    @GetMapping("/{id}/groups")
-//    public ResponseEntity<List<Group>> getGroups(@PathVariable Long id) {
-//        return ResponseEntity.ok((List<Group>) userService.getUserGroups(id));
-//    }
+    @GetMapping("/{id}/groups")
+    public ResponseEntity<Object> getGroups(@PathVariable Long id) {
+        return ResponseEntity.ok(userService.getUserGroups(id));
+    }
 }

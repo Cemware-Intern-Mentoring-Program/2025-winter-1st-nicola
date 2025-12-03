@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Builder
@@ -15,6 +16,6 @@ import java.util.Date;
 public class TaskCreateDto {
     private Long groupId;
     private String taskName;
-    private Date deadline;
+    private LocalDate deadline;
     private boolean isCompleted;
 }

@@ -17,14 +17,14 @@ public class TaskController {
     }
 
     @PostMapping
-    public ResponseEntity<Task> create(@RequestBody TaskCreateDto data,
+    public ResponseEntity<Task> create(@RequestBody TaskCreateDto dto,
                                        @RequestParam Long groupId) {
-        return ResponseEntity.ok(taskService.createTask(groupId, data));
+        return ResponseEntity.ok(taskService.createTask(groupId, dto));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Task> update(@PathVariable Long id, @RequestBody TaskCreateDto data) {
-        return ResponseEntity.ok(taskService.updateTask(id, data));
+    public ResponseEntity<Task> update(@PathVariable Long id, @RequestBody TaskCreateDto dto) {
+        return ResponseEntity.ok(taskService.updateTask(id, dto));
     }
 
 

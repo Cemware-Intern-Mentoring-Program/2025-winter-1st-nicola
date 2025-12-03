@@ -6,6 +6,7 @@ import com.cemware.nicola.repository.TaskRepository;
 import com.cemware.nicola.dto.GroupCreateDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -13,6 +14,7 @@ public class GroupService {
     private final GroupRepository groupRepository;
     private final TaskRepository taskRepository;
 
+    @Transactional
     public Group createGroup(GroupCreateDto data) {
         Group group = Group.builder()
                 .groupName(data.getGroupName())

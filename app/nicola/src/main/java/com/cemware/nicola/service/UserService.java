@@ -1,5 +1,6 @@
 package com.cemware.nicola.service;
 
+import com.cemware.nicola.dto.UserDetailDto;
 import com.cemware.nicola.repository.GroupRepository;
 import com.cemware.nicola.repository.TaskRepository;
 import com.cemware.nicola.domain.user.User;
@@ -40,8 +41,9 @@ public class UserService {
         userRepository.deleteById(userId);
     }
 
-//    public Object getUserGroups(Long userId) {
-//        User user = userRepository.findById(userId).orElseThrow(()->new IllegalArgumentException("존재하지 않는 회원입니다."));
-//
-//    }
+    public Object getUserGroups(Long userId) {
+        User user = userRepository.findById(userId).orElseThrow(()->new IllegalArgumentException("존재하지 않는 회원입니다."));
+        return groupRepository.findAllByUser(user);
+
+    }
 }

@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -22,7 +23,7 @@ public class Task {
     @Column(name = "task_name", length = 20, nullable = false)
     private String taskName;
 
-    private Date deadline;
+    private LocalDate deadline;
 
     @Column(name = "is_completed", nullable = false)
     private boolean isCompleted;
@@ -32,13 +33,13 @@ public class Task {
     private Group group;
 
     @Builder
-    public Task(String taskName, Date deadline, boolean isCompleted){
+    public Task(String taskName, LocalDate deadline, boolean isCompleted){
         this.taskName = taskName;
         this.deadline = deadline;
         this.isCompleted = isCompleted;
     }
 
-    public void updateTaskInformation(String taskName, Date deadline, boolean isCompleted){
+    public void updateTaskInformation(String taskName, LocalDate deadline, boolean isCompleted){
         this.taskName = taskName;
         this.deadline = deadline;
         this.isCompleted = isCompleted;
