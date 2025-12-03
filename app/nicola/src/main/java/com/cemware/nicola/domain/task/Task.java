@@ -16,10 +16,10 @@ public class Task {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "task_id", unique = true, nullable = false)
+    @Column(name = "task_id")
     private Long taskId;
 
-    @Column(length = 20, nullable = false)
+    @Column(name = "task_name", length = 20, nullable = false)
     private String taskName;
 
     private Date deadline;

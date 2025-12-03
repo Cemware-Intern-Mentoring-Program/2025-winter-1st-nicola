@@ -1,9 +1,8 @@
 package com.cemware.nicola.service;
 
 import com.cemware.nicola.domain.group.Group;
-import com.cemware.nicola.domain.group.GroupRepository;
-import com.cemware.nicola.domain.task.TaskRepository;
-import com.cemware.nicola.domain.user.UserRepository;
+import com.cemware.nicola.repository.GroupRepository;
+import com.cemware.nicola.repository.TaskRepository;
 import com.cemware.nicola.dto.GroupCreateDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -27,9 +26,9 @@ public class GroupService {
         return groupRepository.findById(groupId).orElseThrow(()->new IllegalArgumentException("존재하지 않는 그룹입니다."));
     }
 
-    public Group updateGroup(Long groupId, GroupCreateDto data) {
+    public Group updateGroup(Long groupId, GroupCreateDto dto) {
         Group group = groupRepository.findById(groupId).orElseThrow(()->new IllegalArgumentException("존재하지 않는 그룹입니다."));
-        group.updateGroupInformation(data.getGroupName(), data.getPurpose(), group.getDescription());
+        group.updateGroupInformation(dto.getGroupName(), dto.getPurpose(), group.getDescription());
         return group;
     }
 

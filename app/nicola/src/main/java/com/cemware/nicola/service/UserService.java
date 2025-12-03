@@ -1,9 +1,9 @@
 package com.cemware.nicola.service;
 
-import com.cemware.nicola.domain.group.GroupRepository;
-import com.cemware.nicola.domain.task.TaskRepository;
+import com.cemware.nicola.repository.GroupRepository;
+import com.cemware.nicola.repository.TaskRepository;
 import com.cemware.nicola.domain.user.User;
-import com.cemware.nicola.domain.user.UserRepository;
+import com.cemware.nicola.repository.UserRepository;
 import com.cemware.nicola.dto.UserCreateDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,10 +17,10 @@ public class UserService {
     private final GroupRepository groupRepository;
     private final TaskRepository taskRepository;
 
-    public User createUser(UserCreateDto userCreateDto) {
+    public User createUser(UserCreateDto dto) {
         User user = User.builder()
-                .userName(userCreateDto.getUserName())
-                .email(userCreateDto.getEmail())
+                .userName(dto.getUserName())
+                .email(dto.getEmail())
                 .build();
 
         return userRepository.save(user);
@@ -30,9 +30,9 @@ public class UserService {
         return userRepository.findById(userId).orElseThrow(()->new IllegalArgumentException("존재하지 않는 회원입니다."));
     }
 
-    public User updateUser(Long userId, UserCreateDto data) {
+    public User updateUser(Long userId, UserCreateDto dto) {
         User user = userRepository.findById(userId).orElseThrow(()->new IllegalArgumentException("존재하지 않는 회원입니다."));
-        user.updateUserInformation(data.getUserName(), data.getEmail());
+        user.updateUserInformation(dto.getUserName(), dto.getEmail());
         return user;
     }
 

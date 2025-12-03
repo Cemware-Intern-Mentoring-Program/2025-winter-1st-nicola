@@ -1,5 +1,6 @@
-package com.cemware.nicola.domain.user;
+package com.cemware.nicola.repository;
 
+import com.cemware.nicola.domain.user.User;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 
