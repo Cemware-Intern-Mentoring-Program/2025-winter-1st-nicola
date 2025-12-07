@@ -14,6 +14,7 @@ import java.time.LocalDate;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -37,7 +38,7 @@ class TaskServiceTest {
                 .isCompleted(dto.isCompleted())
                 .build();
 
-        when(taskRepository.save(any(Task.class))).thenReturn(savedTask);
+        given(taskRepository.save(any(Task.class))).willReturn(savedTask);
 
         // when
         Task result = taskService.createTask(1L, dto);
