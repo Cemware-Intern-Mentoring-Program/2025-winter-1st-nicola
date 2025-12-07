@@ -17,9 +17,8 @@ public class TaskController {
     }
 
     @PostMapping
-    public ResponseEntity<Task> create(@RequestBody TaskCreateDto dto,
-                                       @RequestParam Long groupId) {
-        return ResponseEntity.ok(taskService.createTask(groupId, dto));
+    public ResponseEntity<Task> create(@RequestBody TaskCreateDto dto) {
+        return ResponseEntity.ok(taskService.createTask(dto));
     }
 
     @PutMapping("/{id}")

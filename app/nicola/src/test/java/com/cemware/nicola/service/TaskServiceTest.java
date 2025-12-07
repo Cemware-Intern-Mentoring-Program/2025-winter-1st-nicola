@@ -41,7 +41,7 @@ class TaskServiceTest {
         given(taskRepository.save(any(Task.class))).willReturn(savedTask);
 
         // when
-        Task result = taskService.createTask(1L, dto);
+        Task result = taskService.createTask(dto);
 
         // then
         assertThat(result.getTaskName()).isEqualTo(dto.getTaskName());

@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 public class TaskService {
     private final TaskRepository taskRepository;
 
-    public Task createTask(Long groupId, TaskCreateDto data) {
+    public Task createTask(TaskCreateDto data) {
         Task task = Task.builder()
                 .taskName(data.getTaskName())
                 .deadline(data.getDeadline())
