@@ -20,21 +20,23 @@ public class User {
     @Column(name = "user_id")
     private Long userId;
     @Column(length = 20, nullable = false)
-    private String userName;
+    private String username;
     @Column(length = 30)
     private String email;
+    private String password;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private final List<Group> groups = new ArrayList<>();
 
     @Builder
-    public User(String userName, String email){
-        this.userName = userName;
+    public User(String username, String email, String password){
+        this.username = username;
         this.email = email;
+        this.password = password;
     }
 
     public void updateUserInformation(String userName, String email) {
-        this.userName = userName;
+        this.username = userName;
         this.email = email;
     }
 }

@@ -1,3 +1,7 @@
+jwt:
+  secret: "c2F5SGVsbG9Ub0RlY29kZXI="
+  expiration_time: 86400000
+
 spring:
   application:
     name: nicola
@@ -11,3 +15,4 @@ spring:
     hibernate:
       ddl-auto: create
     show-sql: true
+
