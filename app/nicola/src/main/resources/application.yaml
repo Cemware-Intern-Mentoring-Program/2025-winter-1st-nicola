@@ -1,0 +1,18 @@
+jwt:
+  secret: "c2F5SGVsbG9Ub0RlY29kZXI="
+  expiration_time: 86400000
+
+spring:
+  application:
+    name: nicola
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/cemware
+    username: root
+    password: Qwe123!@#
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+
