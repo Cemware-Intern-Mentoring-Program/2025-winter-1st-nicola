@@ -13,7 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 public class UserDetailDto {
     private Long userId;
-    private String userName;
+    private String username;
     private String email;
     private List<GroupDetailDto> groups;
 }

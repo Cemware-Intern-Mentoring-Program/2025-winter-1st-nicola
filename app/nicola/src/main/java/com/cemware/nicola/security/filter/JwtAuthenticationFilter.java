@@ -1,6 +1,6 @@
 package com.cemware.nicola.security.filter;
 
-import com.cemware.nicola.dto.LoginDto;
+import com.cemware.nicola.dto.LoginRequestDto;
 import com.cemware.nicola.security.CustomUserDetails;
 import com.cemware.nicola.security.JwtUtil;
 import jakarta.servlet.FilterChain;
@@ -29,11 +29,11 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                                                 HttpServletResponse response) throws AuthenticationException {
 
         ObjectMapper objectMapper = new ObjectMapper();
-        LoginDto loginDto = objectMapper.readValue(request.getInputStream(), LoginDto.class);
+        LoginRequestDto loginRequestDto = objectMapper.readValue(request.getInputStream(), LoginRequestDto.class);
 
-        log.debug("loginDro: {}", loginDto);
+        log.debug("loginDto: {}", loginRequestDto);
         UsernamePasswordAuthenticationToken authenticationToken =
-                new UsernamePasswordAuthenticationToken(loginDto.getUsername(), loginDto.getPassword());
+                new UsernamePasswordAuthenticationToken(loginRequestDto.getUsername(), loginRequestDto.getPassword());
 
         log.debug("authenticationToken: {}", authenticationToken);
         return authenticationManager.authenticate(authenticationToken);

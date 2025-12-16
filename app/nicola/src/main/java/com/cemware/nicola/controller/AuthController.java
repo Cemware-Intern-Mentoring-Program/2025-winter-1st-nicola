@@ -1,31 +1,26 @@
 package com.cemware.nicola.controller;
 
 import com.cemware.nicola.domain.user.User;
-import com.cemware.nicola.dto.LoginDto;
 import com.cemware.nicola.dto.UserCreateDto;
-import com.cemware.nicola.service.UserService;
+import com.cemware.nicola.service.AuthService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/auth")
 public class AuthController {
 
-    private final UserService userService;
+    private final AuthService authService;
 
-    public AuthController(UserService userService) { this.userService = userService; }
-
-    @PostMapping("/signup")
-    public ResponseEntity<User> signup(UserCreateDto dto) {
-        return ResponseEntity.ok(userService.createUser(dto));
+    public AuthController(AuthService authService) {
+        this.authService = authService;
     }
 
-//    @GetMapping("/login")
-//    public ResponseEntity<User> login(LoginDto dto) {
-//        return ResponseEntity.ok();
-//    }
-
+    @PostMapping("/signup")
+    public ResponseEntity<User> signup(@RequestBody UserCreateDto dto) {
+        return ResponseEntity.ok(authService.signup(dto));
+    }
 }
