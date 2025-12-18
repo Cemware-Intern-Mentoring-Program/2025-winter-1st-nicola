@@ -21,7 +21,7 @@ public class UserService {
 
     public User createUser(UserCreateDto dto) {
         User user = User.builder()
-                .username(dto.getUserName())
+                .username(dto.getUsername())
                 .email(dto.getEmail())
                 .password(passwordEncoder.encode(dto.getPassword()))
                 .build();
@@ -35,7 +35,7 @@ public class UserService {
 
     public User updateUser(Long userId, UserCreateDto dto) {
         User user = userRepository.findById(userId).orElseThrow(()->new IllegalArgumentException("존재하지 않는 회원입니다."));
-        user.updateUserInformation(dto.getUserName(), dto.getEmail());
+        user.updateUserInformation(dto.getUsername(), dto.getEmail());
         return user;
     }
 

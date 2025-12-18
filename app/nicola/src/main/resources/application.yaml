@@ -1,5 +1,5 @@
 jwt:
-  secret: "c2F5SGVsbG9Ub0RlY29kZXI="
+  secret: "c2F5SGVsbG9Ub0RlY29kZXJTZWNyZXRLZXlzbGVudGhzaG91bGRvdmVydGhpcnR5dHdvYnl0ZVNv"
   expiration_time: 86400000
 
 spring:
